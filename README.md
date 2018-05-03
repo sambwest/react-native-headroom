@@ -64,6 +64,7 @@ var styles = StyleSheet.create({
   content: {
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#fff',
   },
   loremIpsum: {
     fontSize: 24,
