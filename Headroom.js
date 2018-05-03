@@ -43,20 +43,13 @@ export default class Headroom extends Component {
   }
 
   render() {
-    const { headerComponent, ScrollableComponent } = this.props
+
     return (
       <View style={styles.container}>
-        <ScrollableComponent
-          onScroll={this._onScroll.bind(this)}
-          {...this.props}
-        >
-          <View style={{marginTop: this.props.headerHeight}}>
-            {this.props.children}
-          </View>
-        </ScrollableComponent>
-        <Animated.View style={[styles.header, { height: this.state.height }]}>
-          {headerComponent}
-        </Animated.View>
+         <Animated.View style={{ height: this.state.height }}>
+           {this.props.headerComponent}
+         </Animated.View>
+        {React.cloneElement(this.props.children, {onScroll: this._onScroll.bind(this)})}
       </View>
     )
   }
@@ -64,13 +57,6 @@ export default class Headroom extends Component {
 
 var styles = StyleSheet.create({
   container: {
-    flex: 1,
-  },
-  header: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    overflow: 'hidden',
-  },
+    flex: 1
+  }
 })
